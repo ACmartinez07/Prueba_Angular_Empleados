@@ -8,6 +8,6 @@ var empleadoSchema = new Schema({
   genero: { type: String },
   fechaIngreso: { type: Date },
   estrato: { type: Number },
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model("empleados", empleadoSchema);

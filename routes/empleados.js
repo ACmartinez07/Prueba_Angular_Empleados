@@ -1,3 +1,5 @@
+const empleado = require("../models/empleado.js");
+
 //File: routes/tvshows.js
 module.exports = function(app) {
   var Empleados = require("../models/empleado.js");
@@ -14,7 +16,16 @@ module.exports = function(app) {
   };
 
   //GET - consultar por el Id de empleado
-  findById = function(req, res) {};
+  findById = function(req, res) {
+    const id = req.params.id;
+    Empleados.findById(id, function(err, empleado) {
+      if (!err) {
+        res.send(empleado);
+      } else {
+        console.log("ERROR: " + err);
+      }
+    });
+  };
 
   //POST - agregar empleado
   addEmpleado = function(req, res) {
