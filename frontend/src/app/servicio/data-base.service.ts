@@ -12,6 +12,12 @@ export class DataBaseService {
     return this.getQuery('empleados').pipe(map((empleados: any) => empleados));
   }
 
+  getEmpleado(id: string) {
+    return this.getQuery(`empleado/${id}`).pipe(
+      map((empleado: any) => empleado)
+    );
+  }
+
   getQuery(query: string) {
     const url = `http://localhost:3000/${query}`;
 
