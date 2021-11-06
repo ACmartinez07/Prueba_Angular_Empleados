@@ -1,6 +1,7 @@
+<h1 class="display-2 text-center"><strong>Empleados</strong></h1>
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let empleado of empleado; let i=index">
-    <div class="card h-100 animated fadeIn fast">
+    <div class="card  h-100">
       <div class="card-body">
         <h5 class="display-4">{{empleado.nombre}}</h5>
         <h6 class="display-6 mb-2 text-muted">{{empleado.apellido}}</h6>
@@ -15,6 +16,9 @@
               {{empleado.fechaNacimiento|date}}
             </figcaption>
           </figure>
+        </li>
+        <li class="list-group-item">
+          {{obtenerNombreC(i)}}
         </li>
       </ul>
       <div class="card-body">

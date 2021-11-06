@@ -1,7 +1,7 @@
 <div class="mx-auto" style="width: 800px;">
   <h1 class="display-2 text-center">Formulario para creacion de empleado</h1>
   <div class="mx-auto" style="width: 400px;">
-    <form autocomplete="off" #forma="ngForm">
+    <form autocomplete="off" (ngSubmit)="crear(forma)" #forma="ngForm">
       <div class="form-floating mb-2">
         <input type="text" class="form-control" id="nombre" name="nombre" ngModel="">
         <label for="floatingInput">Nombre</label>
@@ -30,7 +30,7 @@
         <label for="floatingInput">Estrato</label>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto">
-        <button (click)="crear(forma)" class="btn btn-primary" type="submit">crear</button>
+        <button class="btn btn-primary" type="submit">crear</button>
       </div>
     </form>
   </div>

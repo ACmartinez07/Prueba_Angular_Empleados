@@ -7,7 +7,7 @@ var empleadoSchema = new Schema({
   fechaNacimiento: { type: Date }, //TODO:Modificar por fecha de nacimiento y calcular edad en la interfaz de usuario
   genero: { type: String },
   fechaIngreso: { type: Date },
-  estrato: { tipo: Number },
+  estrato: { type: Number },
 });
 
 module.exports = mongoose.model("empleados", empleadoSchema);
