@@ -45,10 +45,7 @@ export class EmpleadoComponent implements OnInit {
   }
 
   actualizarEmpleado() {
-    this._router.navigate([
-      'actualizar',
-      this.router.snapshot.paramMap.get('id'),
-    ]);
+    this._router.navigate([`actualizar/${this.idEmpleado}`]);
   }
 
   regresar() {

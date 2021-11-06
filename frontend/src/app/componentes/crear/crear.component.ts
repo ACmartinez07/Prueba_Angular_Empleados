@@ -26,10 +26,6 @@ export class CrearComponent implements OnInit {
       genero = 'Femenino';
     } else if (forma.value.genero == 2) {
       genero = 'Masculino';
-    } else if (forma.value.genero == 3) {
-      genero = 'Otro';
-    } else if (forma.value.genero == 4) {
-      genero = 'Prefiero no decirlo';
     }
 
     this.empleado = {

@@ -32,7 +32,13 @@ export class DataBaseService {
       });
   }
 
-  actualizarEmpleado() {}
+  actualizarEmpleado(empleado: empleado, id: string) {
+    this.http
+      .put(`http://localhost:3000/empleado/${id}`, empleado)
+      .subscribe((res) => {
+        console.log('empleado creado:', res);
+      });
+  }
 
   eliminarEmpleado(id: string) {
     this.http

@@ -8,7 +8,7 @@ import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'crear', component: CrearComponent },
-  { path: 'actualizar', component: ActualizarComponent },
+  { path: 'actualizar/:id', component: ActualizarComponent },
   { path: 'empleado/:id', component: EmpleadoComponent },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' },
