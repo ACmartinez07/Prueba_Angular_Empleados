@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataBaseService, Empleado } from '../../servicio/data-base.service';
+import { DataBaseService } from '../../servicio/data-base.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,11 +7,18 @@ import { DataBaseService, Empleado } from '../../servicio/data-base.service';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  Empleados: Empleado[] = [];
+  empleado: any = {};
 
   constructor(private dataService: DataBaseService) {}
 
+  getEmpleados() {
+    this.dataService.getEmpleados().subscribe((empleado) => {
+      this.empleado = empleado;
+      console.log('empleados: ', empleado);
+    });
+  }
+
   ngOnInit(): void {
-    this.Empleados = this.dataService.getEmpleados();
+    this.empleado = this.getEmpleados();
   }
 }

@@ -8,6 +8,7 @@ import { ActualizarComponent } from './componentes/actualizar/actualizar.compone
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,10 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     ActualizarComponent,
     InicioComponent,
     EmpleadoComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

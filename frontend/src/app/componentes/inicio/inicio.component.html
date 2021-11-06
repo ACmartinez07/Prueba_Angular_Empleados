@@ -1,12 +1,15 @@
 <div class="row row-cols-1 row-cols-md-4 g-4">
-  <div class="col" *ngFor="let empleado of Empleados; let i=index">
+  <div class="col" *ngFor="let empleado of empleado; let i=index">
     <div class="card h-100 animated fadeIn fast">
       <div class="card-body">
         <h5 class="card-title">{{ empleado.nombre }}</h5>
         <p class="card-text">{{ empleado.apellido }}</p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">{{empleado.genero}}</small>
+        <small class="text-muted">{{empleado.fechaNacimiento| date}}</small>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">{{empleado.estrato}}</small>
       </div>
     </div>
   </div>
