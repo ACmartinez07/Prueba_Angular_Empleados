@@ -15,7 +15,6 @@ export class InicioComponent implements OnInit {
   getEmpleados() {
     this.dataService.getEmpleados().subscribe((empleado) => {
       this.empleado = empleado;
-      console.log('empleados: ', empleado.nombre);
     });
   }
 

@@ -18,9 +18,26 @@ export class DataBaseService {
     );
   }
 
+  crearEmpleado(empleado: empleado) {
+    this.http
+      .post('http://localhost:3000/empleado', empleado)
+      .subscribe((res) => {
+        console.log('empleado creado:', res);
+      });
+  }
+
   getQuery(query: string) {
     const url = `http://localhost:3000/${query}`;
 
     return this.http.get(url);
   }
+}
+
+export interface empleado {
+  nombre: string;
+  apellido: string;
+  fechaNacimiento: Date;
+  genero: string;
+  fechaIngreso: string;
+  estrato: number;
 }

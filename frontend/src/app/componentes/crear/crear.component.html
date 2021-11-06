@@ -1,1 +1,39 @@
-<p>crear works!</p>
+<div class="mx-auto" style="width: 800px;">
+  <h1 class="display-2 text-center">Formulario para creacion de empleado</h1>
+  <div class="mx-auto" style="width: 400px;">
+    <form autocomplete="off" #forma="ngForm">
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="nombre" name="nombre" ngModel="">
+        <label for="floatingInput">Nombre</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="apellido" name="apellido" ngModel="">
+        <label for="floatingInput">Apellido</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="date" class="form-control" id="fechaNacimiento" max="2021-12-12" name="nacimiento" ngModel="">
+        <label for="floatingInput">fecha nacimiento</label>
+      </div>
+      <div class="form-floating mb-2">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="genero" ngModel="">
+                  <option value="1">Femenino</option>
+                  <option value="2">Masculino</option>
+                  <option value="3">Otro</option>
+                  <option value="4">Prefiero no decirlo</option>
+              </select>
+        <label for="floatingSelect">Selecciona tu genero</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="date" class="form-control" id="fechaIngreso" max="2021-12-12" name="ingreso" ngModel="">
+        <label for="floatingInput">fecha ingreso</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="estrato" name="estrato" ngModel="">
+        <label for="floatingInput">Estrato</label>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button (click)="crear(forma)" class="btn btn-primary" type="submit">crear</button>
+      </div>
+    </form>
+  </div>
+</div>

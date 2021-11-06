@@ -9,6 +9,8 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,13 @@ import { HttpClientModule } from '@angular/common/http';
     EmpleadoComponent,
     NavbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
