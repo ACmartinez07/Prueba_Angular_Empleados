@@ -55,7 +55,6 @@ module.exports = function(app) {
   updateEmpleado = function(req, res) {
     console.log("PUT");
     console.log(req.body);
-    console.log(req.params.id);
     const id = req.params.id;
     const update = req.body;
     Empleados.findByIdAndUpdate(id, update, function(err, empleado) {
@@ -68,7 +67,16 @@ module.exports = function(app) {
   };
 
   //DELETE - Borrar empleado
-  deleteEmpleado = function(req, res) {};
+  deleteEmpleado = function(req, res) {
+    const id = req.params.id;
+    Empleados.findByIdAndRemove(id, function(err, empleado) {
+      if (!err) {
+        res.send(empleado);
+      } else {
+        console.log("ERROR: " + err);
+      }
+    });
+  };
 
   //punto de entrada de los metodos
   app.get("/empleados", findAllEmpleados);
