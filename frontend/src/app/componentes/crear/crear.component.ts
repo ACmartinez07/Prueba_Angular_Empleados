@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataBaseService, empleado } from '../../servicio/data-base.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear',
@@ -17,7 +18,7 @@ export class CrearComponent implements OnInit {
     estrato: 0,
   };
 
-  constructor(private dataService: DataBaseService) {}
+  constructor(private dataService: DataBaseService, private _router: Router) {}
 
   crear(forma: NgForm) {
     let genero = '';
@@ -42,6 +43,15 @@ export class CrearComponent implements OnInit {
     console.log(this.empleado);
 
     this.dataService.crearEmpleado(this.empleado);
+    const prom1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this._router.navigate(['inicio']);
+      }, 500);
+    });
+
+    prom1
+      .then((mensaje) => console.log(mensaje))
+      .catch((err) => console.warn(err));
   }
 
   ngOnInit(): void {}

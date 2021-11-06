@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -18,6 +18,12 @@ export class DataBaseService {
     );
   }
 
+  getQuery(query: string) {
+    const url = `http://localhost:3000/${query}`;
+
+    return this.http.get(url);
+  }
+
   crearEmpleado(empleado: empleado) {
     this.http
       .post('http://localhost:3000/empleado', empleado)
@@ -26,10 +32,14 @@ export class DataBaseService {
       });
   }
 
-  getQuery(query: string) {
-    const url = `http://localhost:3000/${query}`;
+  actualizarEmpleado() {}
 
-    return this.http.get(url);
+  eliminarEmpleado(id: string) {
+    this.http
+      .delete(`http://localhost:3000/empleado/${id}`)
+      .subscribe((res) => {
+        console.log('empleado eliminado:', res);
+      });
   }
 }
 

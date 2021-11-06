@@ -17,6 +17,7 @@ export class EmpleadoComponent implements OnInit {
     private _router: Router
   ) {
     this.router.params.subscribe((params) => {
+      this.idEmpleado = params['id'];
       this.getEmpleado(params['id']);
     });
   }
@@ -27,12 +28,21 @@ export class EmpleadoComponent implements OnInit {
   getEmpleado(id: any) {
     this.dataService.getEmpleado(id).subscribe((empleado) => {
       this.empleado = empleado;
-
-      console.log('empleado: ', this.empleado);
     });
   }
 
-  eliminarEmpleado() {}
+  eliminarEmpleado() {
+    this.dataService.eliminarEmpleado(this.idEmpleado);
+    const prom1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this._router.navigate(['inicio']);
+      }, 500);
+    });
+
+    prom1
+      .then((mensaje) => console.log(mensaje))
+      .catch((err) => console.warn(err));
+  }
 
   actualizarEmpleado() {
     this._router.navigate([
