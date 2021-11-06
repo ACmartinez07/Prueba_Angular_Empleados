@@ -52,7 +52,20 @@ module.exports = function(app) {
   };
 
   //PUT - actualizar empleado
-  updateEmpleado = function(req, res) {};
+  updateEmpleado = function(req, res) {
+    console.log("PUT");
+    console.log(req.body);
+    console.log(req.params.id);
+    const id = req.params.id;
+    const update = req.body;
+    Empleados.findByIdAndUpdate(id, update, function(err, empleado) {
+      if (!err) {
+        res.send(empleado);
+      } else {
+        console.log("ERROR: " + err);
+      }
+    });
+  };
 
   //DELETE - Borrar empleado
   deleteEmpleado = function(req, res) {};
