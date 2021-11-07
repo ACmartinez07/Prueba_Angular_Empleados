@@ -21,6 +21,9 @@ export class CrearComponent implements OnInit {
   constructor(private dataService: DataBaseService, private _router: Router) {}
 
   crear(forma: NgForm) {
+    if (forma.invalid) {
+      return;
+    }
     let genero = '';
     if (forma.value.genero == 1) {
       genero = 'Femenino';

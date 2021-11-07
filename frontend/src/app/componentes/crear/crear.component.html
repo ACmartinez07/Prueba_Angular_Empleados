@@ -3,13 +3,16 @@
   <div class="mx-auto" style="width: 400px;">
     <form autocomplete="off" (ngSubmit)="crear(forma)" #forma="ngForm">
       <div class="form-floating mb-2">
-        <input type="text" class="form-control" id="nombre" name="nombre" ngModel="">
+        <input required type="text" class="form-control" [class.is-invalid]="(nombre.invalid && nombre.touched )|| (nombre.invalid && forma.submitted)" name="nombre" ngModel="" #nombre="ngModel">
         <label for="floatingInput">Nombre</label>
+        <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">Campo obligatorio</small>
       </div>
       <div class="form-floating mb-2">
-        <input type="text" class="form-control" id="apellido" name="apellido" ngModel="">
+        <input required type="text" class="form-control" [class.is-invalid]="(apellido.invalid && apellido.touched )|| (apellido.invalid && forma.submitted)" name="apellido" ngModel="" #apellido="ngModel">
         <label for="floatingInput">Apellido</label>
+        <small *ngIf="apellido.invalid && apellido.touched" class="form-text text-danger">Campo obligatorio</small>
       </div>
+
       <div class="form-floating mb-2">
         <input type="date" class="form-control" id="fechaNacimiento" max="2021-12-12" name="nacimiento" ngModel="">
         <label for="floatingInput">fecha nacimiento</label>
@@ -26,12 +29,15 @@
         <label for="floatingInput">fecha ingreso</label>
       </div>
       <div class="form-floating mb-2">
-        <input type="text" class="form-control" id="estrato" name="estrato" ngModel="">
+        <input required type="text" class="form-control" [class.is-invalid]="(estrato.invalid && estrato.touched )|| (estrato.invalid && forma.submitted)" name="estrato" ngModel="" #estrato="ngModel">
         <label for="floatingInput">Estrato</label>
+        <small *ngIf="estrato.invalid && estrato.touched" class="form-text text-danger">Campo obligatorio</small>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto">
         <button class="btn btn-primary" type="submit">crear</button>
+        <button routerLinkActive="active" routerLink="inicio" type="button" class="btn btn-outline-danger ">Regresar</button>
       </div>
+
     </form>
   </div>
 </div>

@@ -38,6 +38,9 @@ export class ActualizarComponent implements OnInit {
   }
 
   actualizar(forma: NgForm) {
+    if (forma.invalid) {
+      return;
+    }
     let genero = '';
     if (forma.value.genero == 1) {
       genero = 'Femenino';
