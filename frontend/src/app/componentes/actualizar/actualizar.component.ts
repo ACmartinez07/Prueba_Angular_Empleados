@@ -41,6 +41,7 @@ export class ActualizarComponent implements OnInit {
     if (forma.invalid) {
       return;
     }
+
     let genero = '';
     if (forma.value.genero == 1) {
       genero = 'Femenino';
@@ -68,8 +69,11 @@ export class ActualizarComponent implements OnInit {
       .then((mensaje) => console.log(mensaje))
       .catch((err) => console.warn(err));
   }
-
   ngOnInit(): void {
     this.getEmpleado(this.router.snapshot.paramMap.get('id'));
+  }
+
+  regresar() {
+    this._router.navigate([`empleado/${this.idEmpleado}`]);
   }
 }

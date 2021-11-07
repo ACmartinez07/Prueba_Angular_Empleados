@@ -10,6 +10,10 @@ import { DataBaseService } from '../../servicio/data-base.service';
 export class EmpleadoComponent implements OnInit {
   empleado: any = {};
   idEmpleado: string = '';
+  fechaN: string = '';
+  fechaI: string = '';
+  edad: number = 0;
+  date = new Date(Date.now());
 
   constructor(
     private router: ActivatedRoute,
@@ -25,9 +29,13 @@ export class EmpleadoComponent implements OnInit {
   ngOnInit(): void {
     this.getEmpleado(this.router.snapshot.paramMap.get('id'));
   }
+
   getEmpleado(id: any) {
     this.dataService.getEmpleado(id).subscribe((empleado) => {
       this.empleado = empleado;
+      this.fechaN = this.formatoFecha(this.empleado.fechaNacimiento);
+      this.fechaI = this.formatoFecha(this.empleado.fechaIngreso);
+      this.calcularEdad(this.empleado.fechaNacimiento);
     });
   }
 
@@ -46,6 +54,32 @@ export class EmpleadoComponent implements OnInit {
 
   actualizarEmpleado() {
     this._router.navigate([`actualizar/${this.idEmpleado}`]);
+  }
+
+  calcularEdad(fechaN: any) {
+    let date1 = new Date(fechaN);
+    let añoN = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
+    let añoActual = Date.UTC(
+      this.date.getFullYear(),
+      this.date.getMonth(),
+      this.date.getDate()
+    );
+    const dia = 1000 * 60 * 60 * 24;
+
+    const diferencia = (añoActual - añoN) / dia;
+    this.edad = diferencia / 365;
+  }
+
+  formatoFecha(fecha: any) {
+    const fechaFormatear = new Date(fecha);
+    return (
+      fechaFormatear.getDate() +
+      1 +
+      ' - ' +
+      (fechaFormatear.getMonth() + 1) +
+      ' - ' +
+      fechaFormatear.getFullYear()
+    );
   }
 
   regresar() {

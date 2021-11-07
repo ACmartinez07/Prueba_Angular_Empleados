@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
   getEmpleados() {
     this.dataService.getEmpleados().subscribe((empleado) => {
       this.empleado = empleado;
+      console.log(this.empleado);
     });
   }
 
@@ -61,5 +62,17 @@ export class InicioComponent implements OnInit {
       this.recursividad(i + 1, nombreC, length, dict);
     }
     return 0;
+  }
+
+  formatoFecha(id: number) {
+    const fechaFormatear = new Date(this.empleado[id].fechaNacimiento);
+    return (
+      fechaFormatear.getDate() +
+      1 +
+      ' - ' +
+      (fechaFormatear.getMonth() + 1) +
+      ' - ' +
+      fechaFormatear.getFullYear()
+    );
   }
 }
