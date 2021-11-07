@@ -1,0 +1,55 @@
+<div class="mx-auto" style="width: 800px;">
+  <h1 class="display-2 text-center">Formulario para acualizar datos del empleado</h1>
+  <div class="mx-auto" style="width: 400px;">
+    <div *ngIf="error" class="alert alert-danger">
+      <h3>Error</h3>
+      <p>Formulario incompleto</p>
+    </div>
+    <form autocomplete="off" (ngSubmit)="actualizar(forma)" #forma="ngForm" class="needs-validation">
+      <div>
+        <div class="form-floating mb-2">
+          <input required type="text" class="form-control" name="nombre" ngModel={{empleado.nombre}}>
+          <label for="floatingInput">Nombre</label>
+        </div>
+
+        <div class="form-floating mb-2">
+          <input required type="text" class="form-control" name="apellido" ngModel="{{empleado.apellido}}">
+          <label for="floatingInput">Apellido</label>
+        </div>
+      </div>
+
+
+      <div class="form-floating mb-2">
+        <input required type="date" class="form-control" max="2021-12-12" name="nacimiento" ngModel>
+        <label for="floatingInput">fecha registrada - {{empleado.fechaNacimiento|date:'shortDate'}}</label>
+      </div>
+
+      <div class="form-floating mb-2">
+        <select required class="form-select" name="genero" ngModel>
+          
+      	            <option value="Femenino">Femenino</option>
+      	            <option value="Masculino">Masculino</option>
+      	        </select>
+        <label for="floatingSelect">Selecciona tu genero</label>
+      </div>
+
+      <div class="form-floating mb-2">
+        <input required type="date" class="form-control" id="fechaIngreso" max="2021-12-12" name="ingreso" ngModel="">
+        <label for="floatingInput">fecha ingreso - {{empleado.fechaIngreso|date:'shortDate'}}</label>
+      </div>
+
+      <div class="form-floating mb-2">
+        <input required type="text" class="form-control" name="estrato" ngModel={{empleado.estrato}}>
+        <label for="floatingInput">Estrato</label>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary" type="submit">Actualizar</button>
+        <button (click)="regresar()" class="btn btn-danger" type="button">Cancelar</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

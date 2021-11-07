@@ -1,0 +1,55 @@
+<div class="card text-center">
+  <h5 class="display-1"><strong>Empleado</strong></h5>
+  <div class="card-body">
+    <h5 class="display-3">{{empleado.nombre}} {{empleado.apellido}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <figure>
+        <blockquote class="blockquote">
+          <p class="h4">Fecha de nacimiento:</p>
+        </blockquote>
+        {{fechaN}}
+      </figure>
+    </li>
+    <li class="list-group-item">
+      <figure>
+        <blockquote class="blockquote">
+          <p class="h4">Edad:</p>
+        </blockquote>
+        <p>{{edad|number:'.0-01'}} Años</p>
+      </figure>
+    </li>
+    <li class="list-group-item">
+      <figure>
+        <blockquote class="blockquote">
+          <p class="h4">Genero:</p>
+        </blockquote>
+        {{empleado.genero}}
+      </figure>
+    </li>
+    <li class="list-group-item">
+      <figure>
+        <blockquote class="blockquote">
+          <p class="h4">Fecha de ingreso:</p>
+        </blockquote>
+        {{fechaI}}
+      </figure>
+    </li>
+    <li class="list-group-item">
+      <figure>
+        <blockquote class="blockquote">
+          <p class="h4">Estrato:</p>
+        </blockquote>
+        {{empleado.estrato}}
+      </figure>
+    </li>
+  </ul>
+  <div class="card-body">
+    <button (click)="eliminarEmpleado()" type="button" class="btn btn-outline-primary btn-block">Eliminar empleado</button>
+    <button (click)="actualizarEmpleado()" type="button" class="btn btn-outline-primary btn-block">Actualizar empleado</button>
+  </div>
+  <div class="card-body">
+    <button (click)="regresar()" type="button" class="btn btn-outline-danger btn-block">Regresar</button>
+  </div>
+</div>

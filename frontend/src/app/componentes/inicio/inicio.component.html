@@ -1,0 +1,51 @@
+<div class="mx-auto" style="width: 400px;">
+  <form (ngSubmit)="filtrarEmpleados(forma)" #forma="ngForm">
+
+    <input class="form-control" type="text" name="termino" placeholder="Buscar empleado" ngModel>
+    <div class="d-flex">
+      <label class="col-3">Filtrar por:</label>
+      <select class="form-select" aria-label="Default select example" name="filtro" ngModel>
+      <option select value="1">Filtrar por nombre</option>
+      <option value="2">Filtrar por apellido</option>
+      </select>
+    </div>
+    <div class="d-grid gap-2 col mx-auto">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </div>
+  </form>
+</div>
+
+
+<h1 class="display-2 text-center"><strong>Empleados</strong></h1>
+<div *ngIf="error" class="alert alert-danger">
+  <h3>Error</h3>
+  <p>No se encuentra ningun empleado</p>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col" *ngFor="let empleado of empleados; let i=index">
+    <div class="card  h-100">
+      <div class="card-body">
+        <h5 class="display-4">{{empleado.nombre}}</h5>
+        <h6 class="display-6 mb-2 text-muted">{{empleado.apellido}}</h6>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <figure>
+            <blockquote class="blockquote">
+              <p>Fecha de nacimiento:</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              {{formatoFecha(i)}}
+            </figcaption>
+          </figure>
+        </li>
+        <li class="list-group-item">
+          {{obtenerNombreC(i)}}
+        </li>
+      </ul>
+      <div class="card-body">
+        <button (click)="obtenerID(i)" type="button" class="btn btn-outline-primary btn-block">Ver mas...</button>
+      </div>
+    </div>
+  </div>
+</div>
