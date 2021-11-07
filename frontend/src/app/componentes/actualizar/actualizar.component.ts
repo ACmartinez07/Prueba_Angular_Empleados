@@ -18,6 +18,7 @@ export class ActualizarComponent implements OnInit {
     estrato: 0,
   };
   idEmpleado: string = '';
+  error: boolean = false;
 
   constructor(
     private router: ActivatedRoute,
@@ -39,6 +40,7 @@ export class ActualizarComponent implements OnInit {
 
   actualizar(forma: NgForm) {
     if (forma.invalid) {
+      this.error = true;
       return;
     }
 

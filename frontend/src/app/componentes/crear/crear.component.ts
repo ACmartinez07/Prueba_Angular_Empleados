@@ -17,11 +17,13 @@ export class CrearComponent implements OnInit {
     fechaIngreso: new Date(),
     estrato: 0,
   };
+  error: boolean = false;
 
   constructor(private dataService: DataBaseService, private _router: Router) {}
 
   crear(forma: NgForm) {
     if (forma.invalid) {
+      this.error = true;
       return;
     }
     this.empleado = {
