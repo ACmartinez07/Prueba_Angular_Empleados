@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataBaseService, empleado } from '../../servicio/data-base.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-inicio',
@@ -8,19 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  empleado: any = {};
+  empleados: any = {};
+  error: boolean = false;
 
   constructor(private dataService: DataBaseService, private router: Router) {}
+  ngOnInit(): void {
+    this.empleados = this.getEmpleados();
+  }
 
   getEmpleados() {
-    this.dataService.getEmpleados().subscribe((empleado) => {
-      this.empleado = empleado;
-      console.log(this.empleado);
+    this.dataService.getEmpleados().subscribe((data) => {
+      this.empleados = data;
     });
   }
 
   obtenerID(idx: number) {
-    let id = this.empleado[idx]._id;
+    let id = this.empleados[idx]._id;
     this.verEmpleado(id);
   }
 
@@ -28,13 +32,9 @@ export class InicioComponent implements OnInit {
     this.router.navigate(['empleado', idx]);
   }
 
-  ngOnInit(): void {
-    this.empleado = this.getEmpleados();
-  }
-
   obtenerNombreC(idx: number) {
-    let nombre = this.empleado[idx].nombre;
-    let apellido = this.empleado[idx].apellido;
+    let nombre = this.empleados[idx].nombre;
+    let apellido = this.empleados[idx].apellido;
     let dict = this.conteo(nombre + apellido);
     console.log(JSON.stringify(dict, null, '\n'));
 
@@ -65,7 +65,7 @@ export class InicioComponent implements OnInit {
   }
 
   formatoFecha(id: number) {
-    const fechaFormatear = new Date(this.empleado[id].fechaNacimiento);
+    const fechaFormatear = new Date(this.empleados[id].fechaNacimiento);
     return (
       fechaFormatear.getDate() +
       1 +
@@ -74,5 +74,43 @@ export class InicioComponent implements OnInit {
       ' - ' +
       fechaFormatear.getFullYear()
     );
+  }
+
+  filtrarEmpleados(forma: NgForm) {
+    console.log(forma);
+
+    if (forma.value.filtro == 1) {
+      this.filtrarNombre(forma.value.termino);
+    } else if (forma.value.filtro == 2) {
+      this.filtrarApellido(forma.value.termino);
+    }
+  }
+
+  filtrarNombre(findNombre: any) {
+    this.error = false;
+    this.dataService.getEmpleados().subscribe((data) => {
+      let empleado = data;
+
+      this.empleados = empleado.filter((m: { nombre: any }) =>
+        m.nombre.toLowerCase().includes(findNombre.toLowerCase())
+      );
+      if (this.empleados == '') {
+        this.error = true;
+      }
+    });
+  }
+
+  filtrarApellido(findApellido: string) {
+    this.error = false;
+    this.dataService.getEmpleados().subscribe((data) => {
+      let empleado = data;
+
+      this.empleados = empleado.filter((m: { apellido: any }) =>
+        m.apellido.toLowerCase().includes(findApellido.toLowerCase())
+      );
+      if (this.empleados == '') {
+        this.error = true;
+      }
+    });
   }
 }

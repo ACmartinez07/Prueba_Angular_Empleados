@@ -14,7 +14,7 @@ export class CrearComponent implements OnInit {
     apellido: '',
     fechaNacimiento: new Date(),
     genero: '',
-    fechaIngreso: '',
+    fechaIngreso: new Date(),
     estrato: 0,
   };
 
@@ -24,22 +24,14 @@ export class CrearComponent implements OnInit {
     if (forma.invalid) {
       return;
     }
-    let genero = '';
-    if (forma.value.genero == 1) {
-      genero = 'Femenino';
-    } else if (forma.value.genero == 2) {
-      genero = 'Masculino';
-    }
-
     this.empleado = {
       nombre: forma.value.nombre,
       apellido: forma.value.apellido,
-      fechaNacimiento: forma.value.nacimiento,
-      genero: genero,
-      fechaIngreso: forma.value.ingreso,
+      fechaNacimiento: new Date(forma.value.nacimiento),
+      genero: forma.value.genero,
+      fechaIngreso: new Date(forma.value.ingreso),
       estrato: Number(forma.value.estrato),
     };
-    console.log(this.empleado);
 
     this.dataService.crearEmpleado(this.empleado);
     const prom1 = new Promise((resolve, reject) => {

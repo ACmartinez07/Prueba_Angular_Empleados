@@ -54,6 +54,6 @@ export interface empleado {
   apellido: string;
   fechaNacimiento: Date;
   genero: string;
-  fechaIngreso: string;
+  fechaIngreso: Date;
   estrato: number;
 }
